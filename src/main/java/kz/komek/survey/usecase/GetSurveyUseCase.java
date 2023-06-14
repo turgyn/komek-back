@@ -8,6 +8,7 @@ import kz.komek.survey.repository.QuestionRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -20,9 +21,11 @@ public class GetSurveyUseCase {
 
     public SurveyRs execute() {
         List<Question> questions = questionRepository.findAll();
+        questions.sort(Comparator.comparing(Question::getId));
         var questionsRs = questions.stream()
                 .map(question -> {
                     List<Option> options = optionRepository.findAllByQuestionId(question.getId());
+                    options.sort(Comparator.comparing(Option::getId));
                     return mapToDto(question, options);
                 })
                 .collect(Collectors.toList());
