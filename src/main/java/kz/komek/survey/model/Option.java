@@ -13,4 +13,5 @@ public class Option {
     private Long id;
     private Long questionId;
     private String text;
+    private Long ordering;
 }

@@ -21,11 +21,11 @@ public class GetSurveyUseCase {
 
     public SurveyRs execute() {
         List<Question> questions = questionRepository.findAll();
-        questions.sort(Comparator.comparing(Question::getId));
+        questions.sort(Comparator.comparing(Question::getOrdering));
         var questionsRs = questions.stream()
                 .map(question -> {
                     List<Option> options = optionRepository.findAllByQuestionId(question.getId());
-                    options.sort(Comparator.comparing(Option::getId));
+                    options.sort(Comparator.comparing(Option::getOrdering));
                     return mapToDto(question, options);
                 })
                 .collect(Collectors.toList());

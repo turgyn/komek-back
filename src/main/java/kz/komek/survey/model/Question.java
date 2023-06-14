@@ -12,4 +12,5 @@ public class Question {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String title;
+    private Long ordering;
 }
