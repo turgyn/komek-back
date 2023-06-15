@@ -51,6 +51,10 @@ public class UserDetailsImpl implements UserDetails {
         return phoneNumber;
     }
 
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
     public String getFullName() {
         return fullName;
     }
