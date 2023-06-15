@@ -3,12 +3,13 @@ package kz.komek.recommendation.model;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
 @Entity
 @Table(name = "specialists")
-public class Specialists {
+public class Specialist {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

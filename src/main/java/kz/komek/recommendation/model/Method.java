@@ -7,7 +7,7 @@ import javax.persistence.*;
 @Data
 @Entity
 @Table(name = "methods")
-public class Methods {
+public class Method {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

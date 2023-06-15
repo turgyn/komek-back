@@ -1,13 +1,13 @@
 package kz.komek.survey.controller;
 
+import kz.komek.auth.AuthUtil;
+import kz.komek.survey.dto.SaveFeedbackRq;
 import kz.komek.survey.dto.SurveyRs;
 import kz.komek.survey.usecase.GetSurveyUseCase;
+import kz.komek.survey.usecase.SaveFeedbackUseCase;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/survey")
@@ -15,10 +15,15 @@ import org.springframework.web.bind.annotation.RestController;
 public class SurveyController {
 
     private final GetSurveyUseCase getSurveyUseCase;
+    private final SaveFeedbackUseCase saveFeedbackUseCase;
 
     @GetMapping
-//    @PreAuthorize("hasRole('USER')")
     public SurveyRs getSurvey() {
         return getSurveyUseCase.execute();
+    }
+
+    @PostMapping
+    public ResponseEntity<?> postFeedback(@RequestBody SaveFeedbackRq saveFeedbackRq) {
+        return saveFeedbackUseCase.execute(saveFeedbackRq);
     }
 }
